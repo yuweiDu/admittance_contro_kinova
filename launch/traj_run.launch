@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<launch>
+  <!--
+      Launch file for the admittance controller in trajectory
+  -->
+
+  <arg name="TOPIC_ARM_POSE" default="/j2s6s300_driver/out/tool_pose"/>
+  <arg name="TOPIC_JOINT_VELOCITY" default="/j2s6s300_driver/out/joint_state"/>
+  <arg name="TOPIC_ARM_COMMAND" default="/j2s6s300_driver/in/cartesian_velocity"/>
+  <!-- <arg name="TOPIC_WRENCH_STATE" default="/j2s6s300_driver/out/tool_wrench"/>  -->
+  <arg name="TOPIC_WRENCH_STATE" default="/sixDOF_force"/> 
+  <!-- /sixDOF_force" -->
+
+
+  <param name="topic_arm_pose" value="$(arg TOPIC_ARM_POSE)"/>
+  <param name="topic_joint_velocity" value="$(arg TOPIC_JOINT_VELOCITY)"/>
+  <param name="topic_arm_command" value="$(arg TOPIC_ARM_COMMAND)"/>
+  <param name="topic_wrench_state" value="$(arg TOPIC_WRENCH_STATE)"/>
+
+
+  <rosparam file="$(find admittance_control)/config/TrajAdmittanceParams.yaml" command="load"/>
+
+  <node pkg="admittance_control" name="admittance_node" type="traj_Admittance" output="screen"/>
+
+</launch>

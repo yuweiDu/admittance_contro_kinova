@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<launch>
+  <!--
+      Launch file for the admittance controller
+  -->
+
+  <rosparam file="$(find admittance_control)/config/fbParams.yaml" command="load"/>
+
+  <node pkg="admittance_control" name="test_node" type="traj_test" output="screen"/>
+  <!-- <node pkg="admittance_control" name="traj_test_adm" type="traj_test_adm" output="screen"/> -->
+
+</launch>
